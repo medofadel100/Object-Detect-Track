@@ -20,9 +20,11 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(redLed, GPIO.OUT)
 
+#Motor 1
 GPIO.setup(16, GPIO.OUT)
 GPIO.setup(19, GPIO.OUT)
 
+#Motor 2
 GPIO.setup(20, GPIO.OUT)
 GPIO.setup(26, GPIO.OUT)
 
@@ -136,15 +138,28 @@ while True:
 
             objectPositionRelativeToOrigin = (width/2) - x
             if objectPositionRelativeToOrigin > 0:
+                # Go left <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                 
                 GPIO.output(16, GPIO.HIGH)
-                # Go left <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                GPIO.output(19, GPIO.LOW)
+                GPIO.output(20, GPIO.HIGH)
+                GPIO.output(26, GPIO.LOW)
                 pass
             elif objectPositionRelativeToOrigin < 0:
                 # Go right >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                
+                GPIO.output(16, GPIO.LOW)
+                GPIO.output(19, GPIO.HIGH)
+                GPIO.output(20, GPIO.LOW)
+                GPIO.output(26, GPIO.HIGH)
                 pass
             else:
                 # Turn Off Directions >>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<
+                
+                GPIO.output(16, GPIO.LOW)
+                GPIO.output(19, GPIO.LOW)
+                GPIO.output(20, GPIO.LOW)
+                GPIO.output(26, GPIO.LOW)
                 pass
 
                 # if the led is not already on, turn the LED on
