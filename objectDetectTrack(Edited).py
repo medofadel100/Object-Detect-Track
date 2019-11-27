@@ -137,22 +137,33 @@ while True:
             # mapServoPosition(int(x), int(y))
 
             objectPositionRelativeToOrigin = (width/2) - x
-            if objectPositionRelativeToOrigin > 0:
+            if objectPositionRelativeToOrigin > 20:
                 # Go left <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                 
+                GPIO.output(16, GPIO.LOW)
+                GPIO.output(19, GPIO.HIGH)
+                GPIO.output(20, GPIO.HIGH)
+                GPIO.output(26, GPIO.LOW)
+                pass
+            elif objectPositionRelativeToOrigin < -20:
+                # Go right >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                
+                GPIO.output(16, GPIO.HIGH)
+                GPIO.output(19, GPIO.LOW)
+                GPIO.output(20, GPIO.LOW)
+                GPIO.output(26, GPIO.HIGH)
+                pass
+            
+            
+            elif objectPositionRelativeToOrigin > -20 and objectPositionRelativeToOrigin < -20 :
+                  # Go Forward    
                 GPIO.output(16, GPIO.HIGH)
                 GPIO.output(19, GPIO.LOW)
                 GPIO.output(20, GPIO.HIGH)
                 GPIO.output(26, GPIO.LOW)
                 pass
-            elif objectPositionRelativeToOrigin < 0:
-                # Go right >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                
-                GPIO.output(16, GPIO.LOW)
-                GPIO.output(19, GPIO.HIGH)
-                GPIO.output(20, GPIO.LOW)
-                GPIO.output(26, GPIO.HIGH)
-                pass
+                    
+                    
             else:
                 # Turn Off Directions >>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<
                 
@@ -172,6 +183,11 @@ while True:
         # Turn Off Directions >>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<
         GPIO.output(redLed, GPIO.LOW)
         ledOn = False
+         GPIO.output(16, GPIO.LOW)
+         GPIO.output(19, GPIO.LOW)
+         GPIO.output(20, GPIO.LOW)
+         GPIO.output(26, GPIO.LOW)
+         
 
     # show the frame to our screen
     cv2.imshow("Frame", frame)
