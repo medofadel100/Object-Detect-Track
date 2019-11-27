@@ -155,7 +155,7 @@ while True:
                 pass
             
             
-            elif objectPositionRelativeToOrigin > -20 and objectPositionRelativeToOrigin < -20 :
+            elif objectPositionRelativeToOrigin > -20 and objectPositionRelativeToOrigin < 20 :
                   # Go Forward    
                 GPIO.output(16, GPIO.HIGH)
                 GPIO.output(19, GPIO.LOW)
